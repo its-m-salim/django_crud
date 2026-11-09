@@ -122,3 +122,16 @@ a {
 .card-link:hover {
     border-bottom-color: #1a1a1a;
 }
+
+button{
+    margin-top: 14px;
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #d4d4d4;
+    border-radius: 8px;
+    padding: 4px 8px;
+    padding-top: 5.5px;
+}

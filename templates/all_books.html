@@ -32,7 +32,11 @@
                 </div>
                 <button class="card-link"><a href="http://127.0.0.1:8000/read/{{book.id}}">Подробнее</a></button>
             </div>
-
+            {% empty %}
+            <div class="empty">
+                <p>Пока нет книг </p>
+                <button><a href="{% url 'create'%}">Добавить книгу</a></button>
+            </div>
             {% endfor %}
         </div>
     </div>
