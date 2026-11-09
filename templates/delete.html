@@ -1,22 +1,33 @@
-{% load static  %}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Библиотека</title>
     <link rel="stylesheet" href="{% static 'delete.css' %}">
-    
 </head>
 <body>
-    <h1>are you sure to delete this book?</h1>
-    <h2>{{book.title}}</h2>
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit">Да, удалить</button>
-    </form>
+    <div class="topbar">
+        <a class="logo" href="{% url 'home' %}">Library</a>
+        <div class="links">
+            <a class="active" href="{% url 'read' %}">Книги</a>
+            <a href="{% url 'create' %}">Добавить</a>
+        </div>
+    </div>
 
-    <a href="{% url 'read' %}">Отмена</a>
-    
+    <div class="content">
+        <h1>Удалить книгу?</h1>
+        <div class="book-title">{{ book.title }}</div>
+        <p>Это действие нельзя отменить</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="buttons">
+                <button class="btn btn-danger" type="submit">Да, удалить</button>
+                <a class="btn-ghost" href="{% url 'read_id' book.id %}">Отмена</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

@@ -1,25 +1,54 @@
-{% load static  %}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Библиотека</title>
     <link rel="stylesheet" href="{% static 'update_book.css' %}">
-    
 </head>
 <body>
-    <h1>You can update your book {{book.title}} here</h1>
+    <div class="topbar">
+        <a class="logo" href="{% url 'home' %}">Library</a>
+        <div class="links">
+            <a class="active" href="{% url 'read' %}">Книги</a>
+            <a href="{% url 'create' %}">Добавить</a>
+        </div>
+    </div>
 
-    <form method="POST">
-    {% csrf_token %}
-    <input type="text" name="title" value="{{ book.title }}">
-    <input type="text" name="author" value="{{ book.author }}">
-    <input type="text" name="genre" value="{{ book.genre }}">
-    <input type="number" name="year" value="{{book.year}}">
-    <textarea name="caption">{{ book.caption|default_if_none:"" }}</textarea>
-    <button type="submit">Save</button>
+    <div class="content">
+        <h1>Изменить книгу</h1>
 
-    </form>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="field">
+                <label>Название</label>
+                <input type="text" name="title" value="{{ book.title }}" required>
+            </div>
+            <div class="field">
+                <label>Автор</label>
+                <input type="text" name="author" value="{{ book.author }}" required>
+            </div>
+            <div class="row">
+                <div class="field">
+                    <label>Жанр</label>
+                    <input type="text" name="genre" value="{{ book.genre }}" required>
+                </div>
+                <div class="field">
+                    <label>Год</label>
+                    <input type="number" name="year" value="{{ book.year }}" required>
+                </div>
+            </div>
+            <div class="field">
+                <label>Описание</label>
+                <textarea name="caption">{{ book.caption|default_if_none:"" }}</textarea>
+            </div>
+
+            <div class="buttons">
+                <button class="btn btn-main" type="submit">Сохранить</button>
+                <a class="btn-ghost" href="{% url 'read_id' book.id %}">Отмена</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

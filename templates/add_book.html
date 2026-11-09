@@ -1,24 +1,54 @@
-{% load static  %}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Библиотека</title>
     <link rel="stylesheet" href="{% static 'add_book.css' %}">
-    
 </head>
 <body>
-    <h1>You can add your book here</h1>
-    <form method="POST">
-    {% csrf_token %}
-    <input type="text" name="title" placeholder="Имя книги" required>
-    <input type="text" name="genre" placeholder="Жанр" required>
-    <input type="text" name="author" placeholder="Название автора" required>
-    <input type="number" name="year" placeholder="Год" required>
-    <input type="text" name="caption" placeholder="Описание">
-    <button type="submit">Submit</button>
+    <div class="topbar">
+        <a class="logo" href="{% url 'home' %}">Library</a>
+        <div class="links">
+            <a href="{% url 'read' %}">Книги</a>
+            <a class="active" href="{% url 'create' %}">Добавить</a>
+        </div>
+    </div>
 
-    </form>
+    <div class="content">
+        <h1>Новая книга</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="field">
+                <label>Название</label>
+                <input type="text" name="title" required>
+            </div>
+            <div class="field">
+                <label>Автор</label>
+                <input type="text" name="author" required>
+            </div>
+            <div class="row">
+                <div class="field">
+                    <label>Жанр</label>
+                    <input type="text" name="genre" required>
+                </div>
+                <div class="field">
+                    <label>Год</label>
+                    <input type="number" name="year" required>
+                </div>
+            </div>
+            <div class="field">
+                <label>Описание</label>
+                <textarea name="caption" placeholder="Необязательно"></textarea>
+            </div>
+
+            <div class="buttons">
+                <button class="btn btn-main" type="submit">Сохранить</button>
+                <a class="btn-ghost" href="{% url 'home' %}">Отмена</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

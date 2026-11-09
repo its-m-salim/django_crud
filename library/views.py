@@ -30,7 +30,7 @@ def create(request):
 def read(request):
     books = Book.objects.all()
     count = Book.objects.count()
-    return render(request, 'all_books.html', {"books": books})
+    return render(request, 'all_books.html', {"books": books, "count": count})
 
 
 

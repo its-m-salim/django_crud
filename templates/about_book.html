@@ -1,22 +1,43 @@
-{% load static  %}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Библиотека</title>
     <link rel="stylesheet" href="{% static 'about_book.css' %}">
-        
 </head>
 <body>
-    <div class="container">
-        <h1>title {{book.title}}</h1>
-        <h1>author {{book.author}}</h1>
-        <h1>caption {{book.caption}}</h1>
-        <h1>created at {{book.created_at}}</h1>
-        <div class="btns">
-            <button><a href="http://127.0.0.1:8000/update/{{book.id}}">edit</a></button>
-            <button><a href="http://127.0.0.1:8000/delete/{{book.id}}">delete</a></button>
+    <div class="topbar">
+        <a class="logo" href="{% url 'home' %}">Library</a>
+        <div class="links">
+            <a class="active" href="{% url 'read' %}">Книги</a>
+            <a href="{% url 'create' %}">Добавить</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <a class="back" href="{% url 'read' %}">Все книги</a>
+
+        <h1>{{ book.title }}</h1>
+        <div class="author">{{ book.author }}</div>
+
+        <div class="tags">
+            <div class="tag">{{ book.year }}</div>
+            <div class="tag">{{ book.genre }}</div>
+        </div>
+
+        {% if book.caption %}
+        <div class="caption">{{ book.caption }}</div>
+        {% else %}
+        <div class="caption caption-empty">Описания пока нет</div>
+        {% endif %}
+
+        <div class="date">Добавлено {{ book.created_at|date:"d.m.Y" }}</div>
+
+        <div class="buttons">
+            <a class="btn" href="{% url 'update' book.id %}">Изменить</a>
+            <a class="btn btn-danger" href="{% url 'delete' book.id %}">Удалить</a>
         </div>
     </div>
 </body>
