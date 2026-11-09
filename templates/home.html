@@ -1,15 +1,28 @@
-{% load static  %}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Библиотека</title>
     <link rel="stylesheet" href="{% static 'home.css' %}">
-        
 </head>
 <body>
-    <h1>You are in home page</h1>
-    <button><a href="http://127.0.0.1:8000/">click to add task</a></button>
+    <div class="topbar">
+        <a class="logo" href="{% url 'home' %}">Library</a>
+        <div class="links">
+            <a href="{% url 'read' %}">Книги</a>
+            <a href="{% url 'create' %}">Добавить</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Моя библиотека</h1>
+        <p>Каталог книг в одном месте</p>
+        <div class="buttons">
+            <a class="btn btn-main" href="{% url 'create' %}">Добавить книгу</a>
+            <a class="btn" href="{% url 'read' %}">Все книги</a>
+        </div>
+    </div>
 </body>
 </html>

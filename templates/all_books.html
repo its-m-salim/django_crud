@@ -1,0 +1,40 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'all_books.css' %}">
+        
+</head>
+<body>
+    <div class="topbar">
+        <a class="logo" href="{% url 'home' %}">Library</a>
+        <div class="links">
+            <a href="{% url 'read' %}">Книги</a>
+            <a href="{% url 'create' %}">Добавить</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="title">
+            <h1>Все книги</h1>
+            <h2>{{count}} книг</h2>
+        </div>
+        <div class="books">
+            {% for book in books %}
+            <div class="card">   
+                <p class="btitle">{{book.title}}</p>
+                <p class="author">{{book.author}}</p>
+                <div class="tags">
+                    <div class="tag">{{book.year}}</div>
+                    <div class="tag">{{book.genre}}</div>
+                </div>
+                <button class="card-link"><a href="http://127.0.0.1:8000/read/{{book.id}}">Подробнее</a></button>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

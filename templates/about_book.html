@@ -1,0 +1,23 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'about_book.css' %}">
+        
+</head>
+<body>
+    <div class="container">
+        <h1>title {{book.title}}</h1>
+        <h1>author {{book.author}}</h1>
+        <h1>caption {{book.caption}}</h1>
+        <h1>created at {{book.created_at}}</h1>
+        <div class="btns">
+            <button><a href="http://127.0.0.1:8000/update/{{book.id}}">edit</a></button>
+            <button><a href="http://127.0.0.1:8000/delete/{{book.id}}">delete</a></button>
+        </div>
+    </div>
+</body>
+</html>
